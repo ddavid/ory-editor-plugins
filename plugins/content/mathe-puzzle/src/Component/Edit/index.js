@@ -1,5 +1,6 @@
 import React from 'react';
-import './index.css';
+import Puzzle from '../Puzzle';
+import '../index.css';
 //import NavigateNext from 'material-ui-icons/NavigateNext';
 //import RemoveCircle from 'material-ui-icons/RemoveCircle';
 
@@ -19,7 +20,7 @@ function Rectangle (props) {
     );
 }
 
-class MathePuzzle extends React.Component {
+class Edit extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -159,4 +160,4 @@ class MathePuzzle extends React.Component {
   }
 }
 
-export default MathePuzzle
+export default Edit
