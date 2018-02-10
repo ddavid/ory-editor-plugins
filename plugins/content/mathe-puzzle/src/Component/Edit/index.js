@@ -121,39 +121,44 @@ class Edit extends React.Component {
                  + this.state.solution.join(' ');
 
     return (
-      <div className="Puzzle">
-        <div className="board-row">
-            <button className="rect" onClick={() => this.clear()}>
-              Clear
+      <div className="edit">
+        <div className="puzzle-input">
+          <div className="board-row">
+              <button className="rect" onClick={() => this.clear()}>
+                Clear
+              </button>
+              {this.renderSquare('/')}
+          </div>
+          <div className="board-row">
+              {this.renderSquare(7)}
+              {this.renderSquare(8)}
+              {this.renderSquare(9)}
+              {this.renderSquare('x')}
+          </div>
+          <div className="board-row">
+              {this.renderSquare(4)}
+              {this.renderSquare(5)}
+              {this.renderSquare(6)}
+              {this.renderSquare('-')}
+          </div>
+          <div className="board-row">
+              {this.renderSquare(1)}
+              {this.renderSquare(2)}
+              {this.renderSquare(3)}
+              {this.renderSquare('+')}
+          </div>
+          <div className="board-row">
+              {this.renderRectangle(0)}
+            <button className="square" onClick={() => this.toggleSetter()}>
+              >
             </button>
-            {this.renderSquare('/')}
+          </div>
+          <div className="status">
+            {status}
+          </div>
         </div>
-        <div className="board-row">
-            {this.renderSquare(7)}
-            {this.renderSquare(8)}
-            {this.renderSquare(9)}
-            {this.renderSquare('x')}
-        </div>
-        <div className="board-row">
-            {this.renderSquare(4)}
-            {this.renderSquare(5)}
-            {this.renderSquare(6)}
-            {this.renderSquare('-')}
-        </div>
-        <div className="board-row">
-            {this.renderSquare(1)}
-            {this.renderSquare(2)}
-            {this.renderSquare(3)}
-            {this.renderSquare('+')}
-        </div>
-        <div className="board-row">
-            {this.renderRectangle(0)}
-          <button className="square" onClick={() => this.toggleSetter()}>
-            >
-          </button>
-        </div>
-        <div className="status">
-          {status}
+        <div clasName="math-puzzle">
+          <Puzzle {...this.state}/>
         </div>
       </div>
     );
