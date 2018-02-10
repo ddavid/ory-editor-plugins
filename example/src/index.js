@@ -24,6 +24,8 @@ import highlight from 'ory-editor-plugins-highlight'
 import 'ory-editor-plugins-highlight/lib/index.css'
 import geogebra from 'ory-editor-plugins-geogebra'
 import 'ory-editor-plugins-geogebra/lib/index.css'
+import calculator from 'ory-editor-plugins-calculator'
+import 'ory-editor-plugins-calculator/lib/index.css'
 import divider from 'ory-editor-plugins-divider'
 import 'ory-editor-plugins-divider/lib/index.css'
 import image from 'ory-editor-plugins-image'
@@ -44,6 +46,7 @@ const plugins = {
     divider,
     geogebra,
     highlight,
+    calculator,
   ], // Define plugins for content cells
   layout: [infobox({ defaultPlugin: slate() })]
 }
