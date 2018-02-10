@@ -19,7 +19,7 @@ function Rectangle (props) {
     );
 }
 
-class Calculator extends React.Component {
+class MathePuzzle extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -159,4 +159,4 @@ class Calculator extends React.Component {
   }
 }
 
-export default Calculator
+export default MathePuzzle

@@ -1,5 +1,5 @@
 {
-  "name": "ory-editor-plugins-calculator",
+  "name": "ory-editor-plugins-mathepuzzle",
   "version": "0.0.0",
   "main": "./lib/index.js",
   "scripts": {
