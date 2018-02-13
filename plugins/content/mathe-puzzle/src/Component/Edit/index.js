@@ -1,6 +1,6 @@
 import React from 'react';
 import Puzzle from '../Puzzle';
-import '../index.css';
+import '../../index.css';
 //import NavigateNext from 'material-ui-icons/NavigateNext';
 //import RemoveCircle from 'material-ui-icons/RemoveCircle';
 
@@ -157,7 +157,7 @@ class Edit extends React.Component {
             {status}
           </div>
         </div>
-        <div clasName="math-puzzle">
+        <div className="math-puzzle">
           <Puzzle {...this.state}/>
         </div>
       </div>
