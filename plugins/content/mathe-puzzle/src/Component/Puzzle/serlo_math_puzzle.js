@@ -146,7 +146,7 @@ function makePuzzle (parent, inputStr) {
   }
 
   //TODO: Why is 'svg[0]' undefined at this point?
-  //touchop.setupCanvas(svg[0][0])
+  touchop.setupCanvas(svg.node())
 }
 
 function addNamedOperator (operatorName, parent) {
@@ -265,7 +265,7 @@ function addAtom (elt, value, text) {
   addLiteral(g, text || value)
   
   //TODO: Why is 'g[0]' undefined at this point?
-  //g[0][0].addEventListener('mousedown', touchop.msDown)
+  g.node().addEventListener('mousedown', touchop.msDown)
   return g
 }
 

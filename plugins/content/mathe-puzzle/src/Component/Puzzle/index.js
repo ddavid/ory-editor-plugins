@@ -1,7 +1,7 @@
 import React from 'react';
 //import Puzzle from '../Puzzle';
 import $ from 'jquery';
-import '../index.css';
+import '../../index.css';
 import MathPuzzle from './serlo_math_puzzle';
 //import NavigateNext from 'material-ui-icons/NavigateNext';
 //import RemoveCircle from 'material-ui-icons/RemoveCircle';
@@ -10,9 +10,9 @@ class Puzzle extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      palette: [1,2,'+'],
+      palette: [],
       start: [],
-      solution: [3],
+      solution: [],
       setPalette: true,
       setStart: false,
       setSolution: false,
@@ -35,11 +35,9 @@ class Puzzle extends React.Component {
     var puzzle= document.getElementById('math-puzzle');
     var input= puzzle.getAttribute('data-source');
 
-    console.log(this.state, puzzle, input);
-
+    //console.log(this.state, puzzle, input);
+    this.setState(this.defaultState());
     $(puzzle).MathPuzzle(puzzle, input.value);
-
-    //this.setState(this.defaultState());
   }
 
   render() {
