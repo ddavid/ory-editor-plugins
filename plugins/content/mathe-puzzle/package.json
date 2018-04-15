@@ -20,7 +20,8 @@
   "dependencies": {
     "d3": "^4.13.0",
     "jquery": "^3.3.1",
-    "material-ui-icons": "^1.0.0-beta.17"
+    "material-ui-icons": "^1.0.0-beta.17",
+    "react-dragula": "^1.1.17"
   },
   "devDependencies": {}
 }
