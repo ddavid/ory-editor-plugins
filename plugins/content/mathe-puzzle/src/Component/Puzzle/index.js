@@ -15,10 +15,10 @@ class Puzzle extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      palette: [{ ast: ["+","507","2"]},
-                { ast: ["4"]},
-                { ast: ["+","2","88"]}],
-      center: { ast:["5"]},
+      palette: [{ ast: ["+","#", "#"]},
+                { ast: "4"},
+                { ast: ["+", "#", { ast : "88" }]}],
+      center: "#",
       solution: [], 
       width: 600,
       height: 400,
@@ -26,6 +26,10 @@ class Puzzle extends React.Component {
       setStart: false,
       setSolution: false,
     };
+    for (const i in this.state.palette) {
+      this.state.palette[i].id = i;
+      this.state.palette[i].isMovable = true;
+    }
   }
 
   defaultState() {
@@ -42,11 +46,31 @@ class Puzzle extends React.Component {
 
   testInsert( index ) {
 
-    let new_blocks   = this.state.palette
-    let center_block = new_blocks.splice(index, 1)[0]
-    
-    this.setState({palette : new_blocks,
-                   center  : center_block})
+    const newCenter = this.insertAstIntoFirstSpot( this.state.center, this.state.palette[index] )
+    if (newCenter !== null) {
+      this.state.palette.splice(index, 1)[0]
+      this.state.center = newCenter
+      
+      this.setState({palette : this.state.palette,
+                     center  : this.state.center })
+    }
+    alert("no space "+JSON.stringify(this.state.center))
+  }
+
+  insertAstIntoFirstSpot( parent, child) {
+    if (parent == "#") {
+      return child;
+    } 
+    else if (Array.isArray(parent.ast)) {
+      for (const i in parent.ast) {
+        const newElt= this.insertAstIntoFirstSpot(parent.ast[i], child);
+        if (newElt !== null) {
+          parent.ast[i]= newElt;
+          return parent;
+        }
+      }
+    }
+    return null;
   }
 
   /*componentDidMount() {
@@ -68,7 +92,7 @@ class Puzzle extends React.Component {
  			 viewBox:"-300 -200 600 400"
 		       }
     
-    const palette      = [{ast: ["+","507","2"]},{ ast: ["4"]}, {ast: ["+","2","88"]}]
+    const palette      = [{ast: ["+","#","#"]},{ ast: ["4"]}, {ast: ["+","#","88"]}]
     const astProps     = {ast:["+","507", ["+","2","88"]]}
     const empty_ast    = {ast: []}
     const centerProps  = {

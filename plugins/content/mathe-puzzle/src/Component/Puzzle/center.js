@@ -11,9 +11,7 @@ class Center extends React.Component {
   render() {
 
     const block = this.props.block
-    let puzzle  = (block.ast.length === 0) ? 
-       (<rect width = "100" height = "70" fill = "lightblue" transform = "translate(-50, -35)"/>) : 
-       (<ASTFragment ast = {block.ast} />)
+    let puzzle  = (<ASTFragment ast = { block } />)
       
     return puzzle;
   }

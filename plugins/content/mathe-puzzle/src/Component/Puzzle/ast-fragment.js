@@ -6,9 +6,7 @@ class ASTFragment extends React.Component {
   constructor (props) {
     super(props);
     //console.log('AST PROPS', props)
-    this.state = {
-      ast: props.ast,
-    };
+    this.state = props;
   }
 
   /**
@@ -17,8 +15,9 @@ class ASTFragment extends React.Component {
    * @param  {JSON} ast JSON Abstract Syntax Tree
    * @return {JSON}     Object with its width and JSX element as attributes
    */
-  renderChild(ast) {
+  renderChild(obj) {
 
+    const ast= (obj === "#") ? ["#"] : obj.ast
     const head = ast[0]
 
     switch(head) {
@@ -141,7 +140,7 @@ class ASTFragment extends React.Component {
 
   render() {
     //console.log("AST Fragment is rendered", this.state.ast)
-    return this.renderChild(this.props.ast).fragment;
+    return this.renderChild(this.props).fragment;
   }
 }
 
