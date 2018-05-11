@@ -17,26 +17,43 @@ class ASTFragment extends React.Component {
    */
   renderChild(obj) {
 
-    const ast= (obj === "#") ? ["#"] : obj.ast
-    const head = ast[0]
-
-    switch(head) {
-      case "+":
-      case "-":
-      case ":":
-        return this.renderSimple(ast)
-      case "/":
-        return this.renderFrac(ast)
-      case "*":
-        return this.renderMul(ast)
-      case "^":
-        return this.renderPow(ast)
-      default:
-        return this.renderNumber(ast)
+    try {
+      const ast = (obj === "#") ? ["#"] : obj.ast
+      const head = ast[0]
+      switch (head) {
+        case "+":
+        case "-":
+        case ":":
+          return this.renderSimple(ast)
+        case "/":
+          return this.renderFrac(ast)
+        case "*":
+          return this.renderMul(ast)
+        case "^":
+          return this.renderPow(ast)
+        default:
+          return this.renderNumber(ast)
+      }
+    } catch(e) {
+      console.log('ERROR rendering', obj)
+      console.log(e);
+      return this.renderError(e);
     }
   }
 
-  
+
+  /**
+   * Renders an error state
+   * @param  {JSON} ast JSON Abstract Syntax Tree
+   * @return {JSON}     Object with its width and JSX element as attributes
+   */
+  renderError(err) {
+    return {
+      width: 100,
+      fragment: (<text>{err.message}</text>)
+    }
+  }
+
   /**
    * Renders all operations where 
    * the content of the text tag is the identifier
@@ -124,8 +141,7 @@ class ASTFragment extends React.Component {
    * @return {JSON}     Object with its width and JSX element as attributes
    */
   renderNumber(ast) {
-    //console.log("rendernumber", ast)
-    const text= ast;
+    const text= ast.toString();
     const width= ast.length * 20;
     const fragment= (
       <g>
@@ -139,8 +155,7 @@ class ASTFragment extends React.Component {
   }
 
   render() {
-    //console.log("AST Fragment is rendered", this.state.ast)
-    return this.renderChild(this.props).fragment;
+    return this.renderChild(this.props.block).fragment;
   }
 }
 

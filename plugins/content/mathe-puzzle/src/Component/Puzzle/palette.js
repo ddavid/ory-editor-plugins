@@ -34,7 +34,7 @@ class Palette extends React.Component {
         {
           this.state.blocks.map(( formel, index) => 
             <g onClick = {( evt ) => this.props._onClick( index )} key = { index } transform = {"translate(" + ((index*100) + 50) + ","+ palette_height/2 + ")"}>
-              <ASTFragment ast = { formel.ast }/>
+              <ASTFragment block = { formel }/>
             </g>)
         }
       </g>

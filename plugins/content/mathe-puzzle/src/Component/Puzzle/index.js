@@ -54,7 +54,6 @@ class Puzzle extends React.Component {
       this.setState({palette : this.state.palette,
                      center  : this.state.center })
     }
-    alert("no space "+JSON.stringify(this.state.center))
   }
 
   insertAstIntoFirstSpot( parent, child) {
@@ -118,13 +117,13 @@ class Puzzle extends React.Component {
     return (
     //<div className = "palette">
     //<ASTFragment {...astProps}/>
-    
+    <div>
     <svg {...attributes}>
-      <Center block = {this.state.center} canvas = {canvas}/>
       <Palette blocks = {this.state.palette} canvas = {canvas} _onClick = {this.testInsert.bind(this)}/>
+      <Center block = {this.state.center} canvas = {canvas}/>
     </svg>
-    //</div>)
-    );
+    <pre>{JSON.stringify(this.state.center, null, 2)}</pre>
+    </div>);
   }
 }
 
