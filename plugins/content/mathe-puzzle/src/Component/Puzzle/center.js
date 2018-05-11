@@ -11,7 +11,10 @@ class Center extends React.Component {
   render() {
 
     const block = this.props.block
-    let puzzle  = (<ASTFragment block={ block } />)
+    let puzzle  = (<g
+      onClick = {( evt ) => this.props._delete(block.id)}><ASTFragment
+      block={ block }
+    /></g>)
       
     return puzzle;
   }

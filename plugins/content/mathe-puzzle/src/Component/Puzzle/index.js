@@ -72,6 +72,30 @@ class Puzzle extends React.Component {
     return null;
   }
 
+  delete(id) {
+    this.setState({
+      center : this.deleteFromAst(this.state.center, id),
+      palette : this.state.palette
+    })
+  }
+
+  deleteFromAst(ast, id, isDeleted) {
+    if (ast.id === id)
+      isDeleted = true;
+    if (Array.isArray(ast.ast)) {
+      for (const i in ast.ast) {
+        ast.ast[i] = this.deleteFromAst(ast.ast[i], id, isDeleted)
+      }
+    }
+    if (isDeleted && isMovable) {
+      this.state.palette.push(ast);
+      return "#"
+    } else {
+      return(ast);
+    }
+  }
+
+
   /*componentDidMount() {
     //console.log("TEST");
     //let palette_tiles = DOM.findDOMNode(this);
@@ -119,8 +143,13 @@ class Puzzle extends React.Component {
     //<ASTFragment {...astProps}/>
     <div>
     <svg {...attributes}>
-      <Palette blocks = {this.state.palette} canvas = {canvas} _onClick = {this.testInsert.bind(this)}/>
-      <Center block = {this.state.center} canvas = {canvas}/>
+      <Palette blocks = {this.state.palette}
+               canvas = {canvas}
+               _onClick = {this.testInsert.bind(this)}/>
+      <Center block = {this.state.center}
+              canvas = {canvas}
+              _delete = { this.delete.bind(this) }
+      />
     </svg>
     <pre>{JSON.stringify(this.state.center, null, 2)}</pre>
     </div>);
